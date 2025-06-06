@@ -1,0 +1,9 @@
+Generate test cases for the feature described below.
+
+Feature Description:
+{feature_description}
+
+Code Snippet (optional):
+{code_snippet}
+
+Please output both unit and integration test cases in Gherkin or a relevant format.
