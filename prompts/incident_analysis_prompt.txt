@@ -1,1 +1,9 @@
+Given the incident logs and system context below, assess the problem and suggest resolution steps.
 
+Logs:
+{alert_log}
+
+System Context:
+{system_context}
+
+Respond with diagnosis, potential root cause, and clear remediation steps.
