@@ -1,0 +1,6 @@
+You are helping groom a product backlog for clarity, prioritization, and readiness.
+
+Backlog Items:
+{backlog_items}
+
+Evaluate each item for completeness, acceptance criteria, and dependencies. Flag blockers or unclear stories.
