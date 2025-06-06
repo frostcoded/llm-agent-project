@@ -1,0 +1,6 @@
+Summarize and synthesize user feedback collected from multiple channels.
+
+Feedback Sources:
+{feedback_data}
+
+Group insights by theme, identify high-frequency pain points, and propose action items.
