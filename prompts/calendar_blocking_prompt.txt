@@ -1,0 +1,9 @@
+The user provided an availability update.
+
+Instruction:
+{availability_instruction}
+
+Current Calendar Events:
+{calendar_data}
+
+Determine how to adjust the calendar accordingly. Block or unblock time and propose scheduling alternatives.
