@@ -2,9 +2,10 @@
 
 from typing import Dict, List, Any
 from integrations.openai_client import OpenAIClient
-# from integrations.claude_client import ClaudeClient
-# from integrations.google_llm_client import GoogleLLMClient
-# from integrations.grok_client import GrokClient
+from integrations.claude_client import ClaudeClient
+from integrations.google_llm_client import GoogleLLMClient
+from integrations.grok_client import GrokClient
+
 
 class LLMCollator:
     """
@@ -22,15 +23,29 @@ class LLMCollator:
                 )
             )
 
-        # Add more LLM clients here
-        # if config.get("claude", {}).get("enabled", False):
-        #     self.clients.append(ClaudeClient(...))
+        if config.get("claude", {}).get("enabled", False):
+            self.clients.append(
+                ClaudeClient(
+                    api_key=config["claude"]["api_key"],
+                    model=config["claude"].get("model", "claude-3-opus")
+                )
+            )
 
-        # if config.get("google", {}).get("enabled", False):
-        #     self.clients.append(GoogleLLMClient(...))
+        if config.get("google", {}).get("enabled", False):
+            self.clients.append(
+                GoogleLLMClient(
+                    api_key=config["google"]["api_key"],
+                    model=config["google"].get("model", "gemini-pro")
+                )
+            )
 
-        # if config.get("grok", {}).get("enabled", False):
-        #     self.clients.append(GrokClient(...))
+        if config.get("grok", {}).get("enabled", False):
+            self.clients.append(
+                GrokClient(
+                    api_key=config["grok"]["api_key"],
+                    model=config["grok"].get("model", "grok-1")
+                )
+            )
 
     def collect_responses(self, prompt: str, context: Dict[str, Any] = {}) -> List[Dict[str, Any]]:
         """
