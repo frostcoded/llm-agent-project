@@ -1,4 +1,4 @@
-# tests/test_splunk_monitoring.py
+# tests/test_agents/test_splunk_monitoring.py
 
 import pytest
 from unittest.mock import patch
