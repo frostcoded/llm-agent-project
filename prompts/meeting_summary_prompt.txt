@@ -1,1 +1,9 @@
+Summarize the following meeting content. Highlight important decisions and action items.
 
+Transcript:
+{transcript}
+
+Reactions (importance weighting):
+{reactions}
+
+Be concise and clearly separate action items if requested.
