@@ -1,0 +1,14 @@
+[
+  {
+    "user": "jdoe",
+    "source": "teams",
+    "message": "Loved how the sprint planner pulled in availability automatically.",
+    "timestamp": "2025-06-01T15:42:10Z"
+  },
+  {
+    "user": "asmith",
+    "source": "jira",
+    "message": "Release notes could use more detail on regressions.",
+    "timestamp": "2025-06-02T11:05:00Z"
+  }
+]
