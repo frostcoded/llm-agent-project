@@ -1,1 +1,9 @@
+Analyze the health of a Jira board based on the following data:
 
+Epics:
+{epics}
+
+Sprints:
+{sprints}
+
+Evaluate delivery velocity, sprint completion, and risk of delays or blockers.
