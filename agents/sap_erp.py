@@ -1,40 +1,35 @@
 # agents/sap_erp.py
 
-from integrations.sap_client import SAPClient
 from agents.llm_collator import LLMCollator
 from config.settings import load_settings
-from typing import Dict, Any
+from integrations.sap_client import SAPClient
+from prompts.prompts import render_prompt
+from typing import Dict, Any, List
 
 
 class SAPERP:
     """
-    Uses SAP ERP data to generate procurement/sales summaries and financial insights.
+    Analyzes SAP data (sales + procurement) using modular LLM prompts and summarization.
     """
 
     def __init__(self, config: Dict[str, Any] = None):
         if config is None:
             config = load_settings()
         self.client = SAPClient(config.get("sap", {}))
-        self.llm = LLMCollator(config.get("llms", {}))
+        self.collator = LLMCollator(config.get("llms", {}))
 
-    def analyze_purchases(self) -> Dict:
+    def analyze_purchases(self, context: Dict[str, Any] = {}) -> Dict[str, Any]:
         po_data = self.client.get_purchase_orders()
-        prompt = f"""
-Analyze the following SAP purchase order data:
+        sample = po_data[:5]
+        prompt = render_prompt("insight_prompt_base.txt", {
+            "data": f"{sample}\n\nFocus on: recent purchasing trends, cost outliers, vendor changes."
+        })
+        return self.collator.summarize_responses(prompt=prompt, context=context)
 
-{po_data[:5]}  # sample only
-
-What are the recent purchasing trends, cost outliers, or vendor shifts?
-"""
-        return self.llm.summarize_responses(prompt)
-
-    def analyze_sales(self) -> Dict:
+    def analyze_sales(self, context: Dict[str, Any] = {}) -> Dict[str, Any]:
         sales_data = self.client.get_sales_orders()
-        prompt = f"""
-Analyze this SAP sales order data:
-
-{sales_data[:5]}
-
-Identify revenue trends, customer groupings, or potential risks in order flow.
-"""
-        return self.llm.summarize_responses(prompt)
+        sample = sales_data[:5]
+        prompt = render_prompt("insight_prompt_base.txt", {
+            "data": f"{sample}\n\nHighlight: revenue trends, customer segmentation, order flow risks."
+        })
+        return self.collator.summarize_responses(prompt=prompt, context=context)
