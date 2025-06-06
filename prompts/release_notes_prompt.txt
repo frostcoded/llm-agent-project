@@ -1,0 +1,9 @@
+Generate release notes based on the following sprint summaries and resolved tickets.
+
+Sprint Summary:
+{sprint_summary}
+
+Resolved Issues:
+{resolved_issues}
+
+Output clear release notes for product and end users, grouped by feature, improvement, and fix.
