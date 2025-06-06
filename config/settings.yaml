@@ -33,6 +33,14 @@ teams:
   enabled: true
   webhook_url: "ENV_TEAMS_WEBHOOK_URL"
 
+slack:
+  webhook_url: "ENV_SLACK_WEBHOOK"
+  bot_token: "ENV_SLACK_BOT"
+
+gitlab:
+  api_token: "ENV_GITLAB_TOKEN"
+  base_url: "https://gitlab.com/api/v4"
+
 global:
   logging_level: "INFO"
   request_timeout: 30
