@@ -1,0 +1,9 @@
+You are analyzing a competitor based on the following data.
+
+External Sources:
+{external_data}
+
+Internal Product Signals:
+{internal_data}
+
+Generate a competitive comparison with strengths, weaknesses, market positioning, and confidence rating.
