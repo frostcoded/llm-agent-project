@@ -1,1 +1,9 @@
-
+{
+  "jdoe": {
+    "name": "Jane Doe",
+    "tone": "direct",
+    "communication_style": "brief and technical",
+    "platform": "email",
+    "preferred_agent": "doc_generator"
+  }
+}
