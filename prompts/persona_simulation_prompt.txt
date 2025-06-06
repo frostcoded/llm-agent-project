@@ -1,0 +1,9 @@
+Simulate the following task in the voice and style of the given persona.
+
+Task:
+{task_description}
+
+Persona:
+{persona_profile}
+
+Write in the tone, structure, and preferences of this individual for maximum clarity and impact.
