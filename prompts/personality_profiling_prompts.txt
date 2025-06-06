@@ -1,0 +1,6 @@
+You are profiling user and team communication styles from different platforms.
+
+Data:
+{communication_data}
+
+Summarize tone, sentiment, preferences, and collaboration behavior. Create a concise personality profile.
