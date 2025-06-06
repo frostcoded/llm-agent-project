@@ -1,0 +1,9 @@
+Generate production-ready code based on the task description below.
+
+Task:
+{task_description}
+
+Context (optional):
+{context}
+
+Please include clean, well-commented code and briefly explain the logic used.
