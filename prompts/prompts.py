@@ -1,22 +1,21 @@
 # prompts/prompts.py
 
 import os
-from jinja2 import Template
 
-PROMPT_DIR = os.path.dirname(__file__)
+PROMPT_DIR = os.path.join(os.path.dirname(__file__))
 
-def load_prompt(filename: str) -> str:
+def render_prompt(template_name: str, context: dict) -> str:
     """
-    Load a raw prompt template file from the prompts directory.
-    """
-    path = os.path.join(PROMPT_DIR, filename)
-    with open(path, "r", encoding="utf-8") as file:
-        return file.read()
+    Load a prompt template and render it with the provided context.
 
-def render_prompt(filename: str, context: dict) -> str:
+    Args:
+        template_name (str): The filename of the prompt template.
+        context (dict): A dictionary containing values to replace in the template.
+
+    Returns:
+        str: The rendered prompt.
     """
-    Load and render a Jinja2 prompt template with context.
-    """
-    template_str = load_prompt(filename)
-    template = Template(template_str)
-    return template.render(**context)
+    template_path = os.path.join(PROMPT_DIR, template_name)
+    with open(template_path, 'r') as file:
+        template = file.read()
+    return template.format(**context)
