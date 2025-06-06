@@ -1,0 +1,12 @@
+Generate a product requirements document (PRD) based on the following Jira items and team inputs.
+
+Jira Stories:
+{jira_stories}
+
+Meeting Notes:
+{meeting_notes}
+
+User Feedback:
+{user_feedback}
+
+Include: problem statement, goals, success criteria, dependencies, risks, and user stories.
