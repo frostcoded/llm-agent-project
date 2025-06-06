@@ -1,4 +1,4 @@
-# tests/test_tableau_analytics.py
+# tests/test_agents/test_tableau_analytics.py
 
 import pytest
 from unittest.mock import patch, MagicMock
