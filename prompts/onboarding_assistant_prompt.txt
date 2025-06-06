@@ -1,0 +1,14 @@
+You are generating an onboarding package for a new team member.
+
+New Hire Name: {name}
+Role: {role}
+Team: {team}
+
+Summarize the following context to help them onboard quickly:
+- Team's recent activity and relevant Jira boards
+- Knowledge base articles
+- Key documentation
+- Persona summaries
+- Meeting notes
+
+Return a structured guide with actionable steps and key links.
