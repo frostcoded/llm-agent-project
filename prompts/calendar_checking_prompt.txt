@@ -1,0 +1,9 @@
+You are coordinating availability across calendars.
+
+Team Members:
+{team_members}
+
+Calendar Availability Data:
+{availability_data}
+
+Find optimal time blocks for a meeting and suggest 2–3 options that suit the majority.
