@@ -1,1 +1,19 @@
+agents:
+  code_generator:
+    model: "openai"
+    temperature: 0.5
+    max_tokens: 1024
 
+  backlog_groomer:
+    model: "claude"
+    temperature: 0.3
+    max_tokens: 2048
+
+  release_note_builder:
+    model: "google"
+    temperature: 0.4
+    format: "markdown"
+
+  calendar_checker:
+    integrations: ["outlook", "apple"]
+    behavior: "smart_scheduling"
