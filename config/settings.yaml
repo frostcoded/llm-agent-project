@@ -1,0 +1,27 @@
+# config/settings.yaml
+
+llms:
+  openai:
+    enabled: true
+    api_key: "YOUR_OPENAI_API_KEY"
+    model: "gpt-4"
+
+  claude:
+    enabled: true
+    api_key: "YOUR_CLAUDE_API_KEY"
+    model: "claude-3-opus"
+
+  google:
+    enabled: true
+    api_key: "YOUR_GOOGLE_API_KEY"
+    model: "gemini-pro"
+
+  grok:
+    enabled: true
+    api_key: "YOUR_GROK_API_KEY"
+    model: "grok-1"
+
+global:
+  logging_level: "INFO"
+  request_timeout: 30
+  retries: 2
