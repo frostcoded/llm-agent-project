@@ -1,1 +1,9 @@
+You are analyzing the efficiency of a development team's workflow.
 
+Jira Issues:
+{jira_issues}
+
+GitHub Pull Requests:
+{pull_requests}
+
+Provide insights on bottlenecks, coordination gaps, and suggestions for improvement.
