@@ -1,27 +1,40 @@
-# config/settings.yaml
-
 llms:
   openai:
     enabled: true
-    api_key: "YOUR_OPENAI_API_KEY"
+    api_key: "ENV_OPENAI_API_KEY"
     model: "gpt-4"
-
   claude:
-    enabled: true
-    api_key: "YOUR_CLAUDE_API_KEY"
+    enabled: false
+    api_key: "ENV_CLAUDE_API_KEY"
     model: "claude-3-opus"
-
   google:
-    enabled: true
-    api_key: "YOUR_GOOGLE_API_KEY"
+    enabled: false
+    api_key: "ENV_GEMINI_API_KEY"
     model: "gemini-pro"
-
   grok:
-    enabled: true
-    api_key: "YOUR_GROK_API_KEY"
+    enabled: false
+    api_key: "ENV_GROK_API_KEY"
     model: "grok-1"
+
+jira:
+  url: "https://yourdomain.atlassian.net"
+  username: "jira_user"
+  api_token: "ENV_JIRA_API_TOKEN"
+
+outlook:
+  enabled: true
+  client_id: "ENV_OUTLOOK_CLIENT_ID"
+  client_secret: "ENV_OUTLOOK_CLIENT_SECRET"
+
+apple:
+  enabled: false  # Placeholder for Apple Calendar integration
+
+teams:
+  enabled: true
+  webhook_url: "ENV_TEAMS_WEBHOOK_URL"
 
 global:
   logging_level: "INFO"
   request_timeout: 30
   retries: 2
+  default_timezone: "UTC"
