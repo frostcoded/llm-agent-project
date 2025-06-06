@@ -1,4 +1,4 @@
-# tests/test_servicenow_itsm.py
+# tests/test_agents/test_servicenow_itsm.py
 
 import pytest
 from unittest.mock import patch
