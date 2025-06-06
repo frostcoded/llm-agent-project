@@ -1,1 +1,6 @@
+Summarize recent activity in the Slack channel: {channel}
 
+Messages:
+{messages}
+
+Identify overall sentiment, any questions or blockers raised, and emerging patterns.
