@@ -36,6 +36,7 @@ A modular, extensible, and enterprise-grade LLM agent framework designed to stre
 ## 🧱 Project Structure
 
 llm-agent-project/
+
 ├── agents/ # Modular agents (code_gen, onboarding, incident_responder, etc.)
 
 ├── config/ # App-wide and per-agent configuration
