@@ -1,8 +1,10 @@
 # agents/backlog_refiner.py
 
-from agents.llm_collator import LLMCollator
+from agents.llm_factory import get_collator
 from integrations.jira_client import JiraClient
 from config.settings import load_settings
+from utils.logger import logger
+from prompts.prompts import render_prompt
 from typing import List, Dict, Any
 
 
@@ -14,19 +16,24 @@ class BacklogRefiner:
     def __init__(self, config: Dict[str, Any] = None):
         if config is None:
             config = load_settings()
-        self.llm = LLMCollator(config.get("llms", {}))
+        self.llm = get_collator(config.get("llms", {}))
         self.jira = JiraClient(config["jira"])
 
     def refine_issues(self, issues: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
         Suggest priority, labels, merges, and clarification needs.
         """
-        prompt = f"""
-Review the following Jira issues and make suggestions to improve backlog health.
+        if not issues:
+            return {"summary": "No issues provided.", "suggestions": []}
 
-Issues:
-{issues}
+        logger.info(f"[BacklogRefiner] Refining {len(issues)} issues...")
 
-Suggest: Priority changes, label/tag adjustments, duplicates, or unclear tickets.
-"""
-        return self.llm.summarize_responses(prompt)
+        prompt = render_prompt("backlog_refinement_prompt.txt", {"issues": issues})
+
+        result = self.llm.summarize_responses(prompt)
+
+        return {
+            "summary": result.get("summary", ""),
+            "suggestions": result.get("suggestions", []),
+            "confidence": result.get("confidence", 0.0)
+        }
