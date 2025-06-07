@@ -1,4 +1,5 @@
 # config/settings.py
+
 import yaml
 import os
 from pathlib import Path
