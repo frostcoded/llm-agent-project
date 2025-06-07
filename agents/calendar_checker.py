@@ -4,6 +4,7 @@ from integrations.apple_calendar_client import AppleCalendarClient
 from integrations.outlook_client import OutlookClient
 from integrations.teams_client import TeamsClient
 from config.settings import load_settings
+from utils.logger import logger
 from typing import List, Dict, Any
 
 
@@ -20,13 +21,20 @@ class CalendarChecker:
         self.teams = TeamsClient(config.get("teams", {}))
 
     def find_available_slots(self, users: List[str], duration_minutes: int = 30) -> Dict[str, Any]:
-        """
-        Analyze calendars and find common open slots.
-        """
-        apple_availability = self.apple.get_availability(users, duration_minutes)
-        outlook_availability = self.outlook.get_availability(users, duration_minutes)
+        logger.info(f"[CalendarChecker] Checking availability for: {users} ({duration_minutes} minutes)")
+        try:
+            apple_availability = self.apple.get_availability(users, duration_minutes)
+        except Exception as e:
+            logger.error(f"Apple availability error: {e}")
+            apple_availability = []
 
-        combined = list(set(apple_availability) & set(outlook_availability))
+        try:
+            outlook_availability = self.outlook.get_availability(users, duration_minutes)
+        except Exception as e:
+            logger.error(f"Outlook availability error: {e}")
+            outlook_availability = []
+
+        combined = sorted(list(set(apple_availability) & set(outlook_availability)))
         return {
             "available_slots": combined,
             "source_details": {
@@ -36,11 +44,9 @@ class CalendarChecker:
         }
 
     def schedule_meeting(self, users: List[str], topic: str, preferred_slots: List[str]) -> Dict[str, Any]:
-        """
-        Book a meeting based on shared availability.
-        """
-        best_slot = preferred_slots[0] if preferred_slots else "No common slot found"
+        best_slot = preferred_slots[0] if preferred_slots else None
+        logger.info(f"[CalendarChecker] Scheduling topic '{topic}' for users {users}. Best slot: {best_slot}")
         return {
             "topic": topic,
-            "scheduled_time": best_slot
+            "scheduled_time": best_slot or "No common slot found"
         }
