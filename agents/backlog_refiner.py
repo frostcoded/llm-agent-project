@@ -1,4 +1,4 @@
-# agents/backlog_groomer.py
+# agents/backlog_refiner.py
 
 from agents.llm_collator import LLMCollator
 from integrations.jira_client import JiraClient
@@ -6,9 +6,9 @@ from config.settings import load_settings
 from typing import List, Dict, Any
 
 
-class BacklogGroomer:
+class BacklogRefiner:
     """
-    Assists in grooming the Jira backlog by labeling, prioritizing, and merging.
+    Assists in refining the Jira backlog by labeling, prioritizing, and merging.
     """
 
     def __init__(self, config: Dict[str, Any] = None):
@@ -17,7 +17,7 @@ class BacklogGroomer:
         self.llm = LLMCollator(config.get("llms", {}))
         self.jira = JiraClient(config["jira"])
 
-    def groom_issues(self, issues: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def refine_issues(self, issues: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
         Suggest priority, labels, merges, and clarification needs.
         """
