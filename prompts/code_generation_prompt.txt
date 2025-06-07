@@ -1,9 +1,17 @@
-Generate production-ready code based on the task description below.
+You are a senior software engineer. Generate production-ready code for the task described below.
 
-Task:
-{task_description}
+### Task Description:
+{task}
 
-Context (optional):
+### Context (if any):
 {context}
 
-Please include clean, well-commented code and briefly explain the logic used.
+### Instructions:
+- Write clean, modular, well-commented code.
+- Ensure it adheres to best practices in the relevant language.
+- Include a brief explanation of the approach and logic used.
+- If appropriate, add type annotations and basic test coverage.
+
+Return your output in this format:
+1. Code Block
+2. Explanation
