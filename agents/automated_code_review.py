@@ -2,12 +2,14 @@
 
 from agents.llm_collator import LLMCollator
 from config.settings import load_settings
+from prompts.prompts import render_prompt
+from utils.logger import logger
 from typing import Dict, Any
 
 
 class AutomatedCodeReviewer:
     """
-    Performs automated code reviews using multiple LLMs.
+    Performs automated code reviews using LLM feedback aggregation.
     """
 
     def __init__(self, config: Dict[str, Any] = None):
@@ -15,17 +17,21 @@ class AutomatedCodeReviewer:
             config = load_settings().get("llms", {})
         self.collator = LLMCollator(config)
 
-    def review_code(self, code_block: str, language: str = "python", context: str = "") -> Dict[str, Any]:
+    def review_code(self, code_block: str, language: str = "python", context: str = "", review_style: str = "general") -> Dict[str, Any]:
         """
-        Review a given code block and return LLM-based suggestions.
+        Review a given code block using a configurable prompt.
         """
-        prompt = f"""
-Perform a detailed code review on the following {language} code:
+        prompt = render_prompt("code_review_prompt.txt", {
+            "language": language,
+            "code_block": code_block,
+            "context": context,
+            "review_style": review_style
+        })
 
-{code_block}
+        logger.info("Performing automated code review...")
+        result = self.collator.summarize_responses(prompt)
 
-Additional context: {context}
-
-Point out bugs, code smells, improvements, and formatting issues. Provide suggestions.
-"""
-        return self.collator.summarize_responses(prompt)
+        return {
+            "review_style": review_style,
+            "suggestions": result.get("summary", "No suggestions returned.")
+        }
