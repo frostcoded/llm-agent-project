@@ -1,3 +1,5 @@
+# agents/jira_manager.py
+
 from integrations.jira_client import JiraClient
 from agents.llm_collator import LLMCollator
 from config.settings import load_settings
