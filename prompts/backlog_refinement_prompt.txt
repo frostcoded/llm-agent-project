@@ -1,4 +1,4 @@
-You are helping groom a product backlog for clarity, prioritization, and readiness.
+You are helping refine a product backlog for clarity, prioritization, and readiness.
 
 Backlog Items:
 {backlog_items}
