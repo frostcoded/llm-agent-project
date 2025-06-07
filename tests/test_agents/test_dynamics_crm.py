@@ -1,8 +1,8 @@
-# tests/test_dynamics_crm.py
+# tests/test_agents/test_dynamics_crm.py
 
 import pytest
 from unittest.mock import patch
-from agents.dynamics_crm_agent import DynamicsCRMAgent
+from agents.dynamics_crm import DynamicsCRMAgent
 
 
 @patch("agents.dynamics_crm.DynamicsClient")
