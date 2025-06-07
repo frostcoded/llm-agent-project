@@ -3,6 +3,7 @@
 from agents.llm_collator import LLMCollator
 from config.settings import load_settings
 from prompts.prompts import render_prompt
+from utils.logger import logger
 from typing import List, Dict, Any
 
 
@@ -20,12 +21,22 @@ class CodeGenerator:
         """
         Generates code using rendered prompt and returns all LLM responses.
         """
-        prompt = render_prompt("code_review_prompt.txt", {"code": task_description})
+        if not task_description:
+            logger.warning("No task description provided.")
+            return []
+
+        prompt = render_prompt("code_generation_prompt.txt", {"task": task_description})
+        logger.debug(f"[CodeGenerator] Generated prompt: {prompt[:200]}...")
         return self.collator.collect_responses(prompt=prompt, context=context)
 
     def generate_and_summarize(self, task_description: str, context: Dict[str, Any] = {}) -> Dict[str, Any]:
         """
         Generates code and returns a summarized LLM response.
         """
-        prompt = render_prompt("code_review_prompt.txt", {"code": task_description})
+        if not task_description:
+            logger.warning("No task description provided.")
+            return {"summary": "No task provided", "response": None}
+
+        prompt = render_prompt("code_generation_prompt.txt", {"task": task_description})
+        logger.debug(f"[CodeGenerator] Summarizing for task: {task_description}")
         return self.collator.summarize_responses(prompt=prompt, context=context)
