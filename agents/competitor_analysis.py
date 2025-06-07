@@ -2,6 +2,8 @@
 
 from agents.llm_collator import LLMCollator
 from config.settings import load_settings
+from prompts.prompts import render_prompt
+from utils.logger import logger
 from typing import Dict, List, Any
 
 
@@ -15,23 +17,26 @@ class CompetitorAnalysisAgent:
             config = load_settings().get("llms", {})
         self.collator = LLMCollator(config)
 
-    def analyze(self, company_name: str, competitors: List[str], internal_data: str = "", external_data: str = "", period: str = "last 6 months") -> Dict[str, Any]:
-        """
-        Generates a comparative analysis.
+    def analyze(
+        self,
+        company_name: str,
+        competitors: List[str],
+        internal_data: str = "",
+        external_data: str = "",
+        period: str = "last 6 months"
+    ) -> Dict[str, Any]:
 
-        Args:
-            company_name: Name of the user's company.
-            competitors: List of competitors.
-            internal_data: Internal, scrubbed documents or insights.
-            external_data: Public content (scraped or uploaded).
-            period: Time window to reference for analysis.
-        """
-        prompt = f"""
-Compare {company_name} against the following competitors: {', '.join(competitors)}.
-Use this internal information (scrubbed): {internal_data}
-And this public data: {external_data}
-Timeframe: {period}
+        if not company_name or not competitors:
+            logger.warning("[CompetitorAnalysisAgent] Missing company name or competitors.")
+            return {"summary": "Missing input data", "confidence": "low"}
 
-Identify key trends, market advantages or weaknesses, and assign confidence scores. List external references if available.
-"""
+        prompt = render_prompt("competitor_analysis_prompt.txt", {
+            "company": company_name,
+            "competitors": ", ".join(competitors),
+            "internal_data": internal_data,
+            "external_data": external_data,
+            "period": period
+        })
+
+        logger.debug(f"[CompetitorAnalysisAgent] Prompt generated for {company_name} vs {competitors}")
         return self.collator.summarize_responses(prompt)
