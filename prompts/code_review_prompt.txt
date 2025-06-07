@@ -1,0 +1,10 @@
+You are a seasoned code reviewer.
+
+Review the following {language} code:
+{code_block}
+
+Context: {context}
+Style: {review_style}
+
+Identify bugs, code smells, and improvements in structure, readability, performance, or security.
+Provide actionable suggestions with brief explanations.
