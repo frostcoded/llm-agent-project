@@ -1,6 +1,14 @@
-You are helping refine a product backlog for clarity, prioritization, and readiness.
+You are an experienced agile delivery lead helping refine a Jira backlog for clarity, prioritization, and execution readiness.
 
 Backlog Items:
-{backlog_items}
+{issues}
 
-Evaluate each item for completeness, acceptance criteria, and dependencies. Flag blockers or unclear stories.
+For each item:
+- Assess completeness and clarity (title, description, acceptance criteria).
+- Flag missing or weak acceptance criteria.
+- Suggest appropriate priority.
+- Recommend tags/labels.
+- Identify potential duplicates.
+- Highlight blockers or dependencies if evident.
+
+Return a clear summary and actionable backlog improvement suggestions.
