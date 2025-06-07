@@ -36,15 +36,23 @@ A modular, extensible, and enterprise-grade LLM agent framework designed to stre
 ## 🧱 Project Structure
 
 llm-agent-project/
-├── agents/.       # Modular agents (code_gen, onboarding, incident_responder, etc.)
-├── config/        # App-wide and per-agent configuration
-├── data/          # Profiles, feedback logs
-├── deploy/        # Azure Functions, Dockerfile, CI/CD
-├── integrations/. # API clients (LLMs, Jira, Slack, GitLab, etc.)
-├── tests/         # Pytest-based unit tests
-├── utils/         # Auth, logging, prompts, monitoring, caching
-├── workflows/     # Orchestrated cross-agent flows
-└── main.py        # Central orchestration and CLI
+├── agents/ # Modular agents (code_gen, onboarding, incident_responder, etc.)
+
+├── config/ # App-wide and per-agent configuration
+
+├── data/ # Profiles, feedback logs
+
+├── deploy/ # Azure Functions, Dockerfile, CI/CD
+
+├── integrations/ # API clients (LLMs, Jira, Slack, GitLab, etc.)
+
+├── tests/ # Pytest-based unit tests
+
+├── utils/ # Auth, logging, prompts, monitoring, caching
+
+├── workflows/ # Orchestrated cross-agent flows
+
+└── main.py # Central orchestration and CLI
 
 ---
 
@@ -68,17 +76,17 @@ llm-agent-project/
    export SLACK_WEBHOOK=your_slack_webhook
 
 4. Configure settings:
-   
-	 config/settings.yaml
+
+   config/settings.yaml
    config/agent_profiles.yaml
 
-5. Run orchestrator:
+6. Run orchestrator:
 
    python main.py
 
 🧪 Testing
 
-pytest tests/
+   pytest tests/
 
 📅 Example Use Cases
 
