@@ -2,6 +2,7 @@ llms:
   openai:
     enabled: true
     api_key: "ENV_OPENAI_API_KEY"
+    use_fake: false  # Set to true for tests or CI
     model: "gpt-4"
   claude:
     enabled: false
