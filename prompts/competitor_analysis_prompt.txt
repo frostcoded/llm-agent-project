@@ -1,9 +1,27 @@
-You are analyzing a competitor based on the following data.
+You are analyzing a company’s competitive position using internal and external signals.
 
-External Sources:
-{external_data}
+### Company:
+{company}
 
-Internal Product Signals:
+### Competitors:
+{competitors}
+
+### Internal Product Signals (scrubbed):
 {internal_data}
 
-Generate a competitive comparison with strengths, weaknesses, market positioning, and confidence rating.
+### External Public Sources:
+{external_data}
+
+### Timeframe:
+{period}
+
+### Instructions:
+- Compare the company to each competitor in terms of strengths, weaknesses, and strategic positioning.
+- Highlight notable trends, risks, or shifts in the market landscape.
+- Include confidence ratings for each observation.
+- Cite external references when appropriate.
+
+Return your analysis in this format:
+1. Comparison Overview
+2. Company-by-Company Analysis
+3. Summary and Confidence Rating
